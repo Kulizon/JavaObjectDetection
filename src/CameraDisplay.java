@@ -1,3 +1,7 @@
+import org.opencv.core.Mat;
+import org.opencv.core.Scalar;
+import org.opencv.imgproc.Imgproc;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowEvent;
@@ -56,6 +60,7 @@ public class CameraDisplay {
     public void showImages(ImageIcon image, ImageIcon processed) {
         labels[0].setIcon(image);
         labels[1].setIcon(processed);
+        frame.repaint();
     }
 }
 
