@@ -6,22 +6,28 @@ import java.awt.event.WindowListener;
 public class CameraDisplay {
     Camera camera;
     JFrame frame;
-    JLabel cameraLabel;
-    public CameraDisplay() {
+    JPanel displayContainer;
+    JLabel[] labels = new JLabel[2];
 
+    private JLabel addCameraLabel() {
+        JLabel label = new JLabel();
+        displayContainer.add(label);
+        return label;
     }
 
     public void start() {
         frame = new JFrame("Label Example");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(500, 500);
         frame.setLayout(new FlowLayout());
+        frame.setBounds(0, 0, 1300, 500);
         frame.setVisible(true);
 
-        cameraLabel = new JLabel();
-        cameraLabel.setBounds(10, 10, 400, 400);
-        cameraLabel.setSize(200, 200);
-        frame.add(cameraLabel);
+        displayContainer = new JPanel();
+        displayContainer.setBounds(0,0, 800, 400);
+        frame.add(displayContainer);
+
+        labels[0] = this.addCameraLabel();
+        labels[1] = this.addCameraLabel();
 
         frame.addWindowListener(
                 new WindowListener() {
@@ -47,8 +53,9 @@ public class CameraDisplay {
     public void setCamera(Camera camera) {
         this.camera = camera;
     }
-    public void showImage(ImageIcon image) {
-        cameraLabel.setIcon(image);
+    public void showImages(ImageIcon image, ImageIcon processed) {
+        labels[0].setIcon(image);
+        labels[1].setIcon(processed);
     }
 }
 
