@@ -12,21 +12,21 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public class Camera {
     public VideoCapture capture = new VideoCapture(0);
-    public CameraDisplay display;
 
-    public void start(CameraDisplay display) throws IOException {
-        this.display = display;
+
+    public void start(GUI gui) throws IOException {
 
         while(capture.isOpened()) {
             Mat frame = new Mat();
             capture.read(frame);
 
-            Mat processed = ImageProcessing.processImage(frame);
-            display.showImages(new ImageIcon(createBufferedImage(frame)), new ImageIcon(createBufferedImage(processed)));
+            Mat processed = ImageProcessing.processImage(frame, gui.getValuesController().getSliders());
+            gui.getDisplay().showImages(new ImageIcon(createBufferedImage(frame)), new ImageIcon(createBufferedImage(processed)));
         }
     }
 

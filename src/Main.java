@@ -15,7 +15,7 @@ public class Main {
             @Override public void run()
             {
                 try {
-                    camera.start(gui.getDisplay());
+                    camera.start(gui);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }

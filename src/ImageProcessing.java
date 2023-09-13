@@ -1,17 +1,19 @@
 import org.opencv.core.*;
 import org.opencv.imgproc.Imgproc;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class ImageProcessing {
-    public static Mat processImage(Mat frame) {
+    public static Mat processImage(Mat frame, Map<String, Integer> slidersValues) {
         final Mat processed = frame.clone();
 
         // detect only blue
         Imgproc.cvtColor(frame, processed, Imgproc.COLOR_BGR2HSV);
-        Scalar low = new Scalar(109,170,70);
-        Scalar high = new Scalar(140,200,240);
+        Scalar low = new Scalar(slidersValues.get("hueLow"), slidersValues.get("satLow"), slidersValues.get("valLow"));
+        Scalar high = new Scalar(slidersValues.get("hueHigh"), slidersValues.get("satHigh"), slidersValues.get("valHigh"));
         Core.inRange(processed, low, high, processed); //hsv
 
         // detect objects
