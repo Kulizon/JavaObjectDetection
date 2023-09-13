@@ -13,18 +13,9 @@ public class CameraDisplay {
     JPanel displayContainer;
     JLabel[] labels = new JLabel[2];
 
-    private JLabel addCameraLabel() {
-        JLabel label = new JLabel();
-        displayContainer.add(label);
-        return label;
-    }
-
-    public void start() {
-        frame = new JFrame("Label Example");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new FlowLayout());
-        frame.setBounds(0, 0, 1300, 500);
-        frame.setVisible(true);
+    public CameraDisplay(JFrame frame, Camera camera) {
+        this.frame = frame;
+        this.camera = camera;
 
         displayContainer = new JPanel();
         displayContainer.setBounds(0,0, 800, 400);
@@ -54,9 +45,13 @@ public class CameraDisplay {
                 }
         );
     }
-    public void setCamera(Camera camera) {
-        this.camera = camera;
+
+    private JLabel addCameraLabel() {
+        JLabel label = new JLabel();
+        displayContainer.add(label);
+        return label;
     }
+
     public void showImages(ImageIcon image, ImageIcon processed) {
         labels[0].setIcon(image);
         labels[1].setIcon(processed);

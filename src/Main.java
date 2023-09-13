@@ -7,19 +7,15 @@ public class Main {
     public static void main(String[] args) throws InterruptedException, IOException {
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 
-
-        CameraDisplay display = new CameraDisplay();
-        Camera camera = new Camera(display);
-        display.setCamera(camera);
-
-        display.start();
+        Camera camera = new Camera();
+        GUI gui = new GUI(camera);
 
 
         new Thread(new Runnable() {
             @Override public void run()
             {
                 try {
-                    camera.start();
+                    camera.start(gui.getDisplay());
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
