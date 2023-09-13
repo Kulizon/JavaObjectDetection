@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public class ImageProcessing {
+    private static Point center = new Point(0, 0);
     public static Mat processImage(Mat frame, Map<String, Integer> slidersValues) {
         final Mat processed = frame.clone();
 
@@ -27,7 +28,7 @@ public class ImageProcessing {
         Mat hierarchy = new Mat();
         Imgproc.findContours(processed, contours, hierarchy, Imgproc.RETR_TREE, Imgproc.CHAIN_APPROX_SIMPLE);
 
-        Point center = findContoursCenter(contours);
+        ImageProcessing.center = findContoursCenter(contours);
         // draw point for debugging
         Imgproc.rectangle(processed,
                 new Point(center.x + 5, center.y + 5),
@@ -51,5 +52,9 @@ public class ImageProcessing {
         approx[1] /= contours.size();
 
         return new Point(approx[0], approx[1]);
+    }
+
+    public static Point getCenter() {
+        return center;
     }
 }

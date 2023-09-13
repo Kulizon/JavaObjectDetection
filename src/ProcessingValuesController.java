@@ -1,6 +1,7 @@
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,17 +15,17 @@ public class ProcessingValuesController {
         slidersContainer.setLayout(new BoxLayout(slidersContainer, BoxLayout.Y_AXIS));
         slidersContainer.setSize(200, 400);
 
-        slidersContainer.add(createSlider(109, "hueLow"));
+        slidersContainer.add(createSlider(110, "hueLow"));
         slidersContainer.add(createSlider(140, "hueHigh"));
 
-        slidersContainer.add(createSlider(170, "satLow"));
-        slidersContainer.add(createSlider(200, "satHigh"));
+        slidersContainer.add(createSlider(205, "satLow"));
+        slidersContainer.add(createSlider(250, "satHigh"));
 
         slidersContainer.add(createSlider(70, "valLow"));
         slidersContainer.add(createSlider(240, "valHigh"));
     }
 
-    private JSlider createSlider(int initVal, String name) {
+    private JPanel createSlider(int initVal, String name) {
         final int MIN_VAL = 0;
         final int MAX_VAL = 255;
 
@@ -42,7 +43,16 @@ public class ProcessingValuesController {
 
         sliders.put(name, initVal);
 
-        return slider;
+        JPanel container = new JPanel();
+        container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
+
+        JLabel label = new JLabel(name, JLabel.LEFT);
+        label.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+        container.add(label);
+        container.add(slider);
+
+        return container;
     }
 
     public JPanel getSlidersContainer() {

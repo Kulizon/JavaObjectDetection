@@ -24,6 +24,7 @@ public class Camera {
         while(capture.isOpened()) {
             Mat frame = new Mat();
             capture.read(frame);
+            Core.flip(frame, frame, 1); // 1 means left to right
 
             Mat processed = ImageProcessing.processImage(frame, gui.getValuesController().getSliders());
             gui.getDisplay().showImages(new ImageIcon(createBufferedImage(frame)), new ImageIcon(createBufferedImage(processed)));

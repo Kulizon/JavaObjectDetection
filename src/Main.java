@@ -9,11 +9,10 @@ public class Main {
 
         Camera camera = new Camera();
         GUI gui = new GUI(camera);
-
+        KeyboardController kbController = new KeyboardController();
 
         new Thread(new Runnable() {
-            @Override public void run()
-            {
+            @Override public void run() {
                 try {
                     camera.start(gui);
                 } catch (IOException e) {
@@ -22,6 +21,10 @@ public class Main {
             }
         }).start();
 
-
+        new Thread(new Runnable() {
+            @Override public void run() {
+                kbController.start();
+            }
+        }).start();
     }
 }
