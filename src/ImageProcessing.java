@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public class ImageProcessing {
-    private static Point center = new Point(0, 0);
+    private static Point center = new Point();
     public static Mat processImage(Mat frame, Map<String, Integer> slidersValues) {
         final Mat processed = frame.clone();
 

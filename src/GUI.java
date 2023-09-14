@@ -6,9 +6,9 @@ import java.awt.event.WindowListener;
 public class GUI {
     private final CameraDisplay display;
     private final ProcessingValuesController valuesController;
-
+    JFrame frame;
     public GUI(Camera camera) {
-        JFrame frame = new JFrame("Tracking");
+        frame = new JFrame("Tracking");
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new FlowLayout());
@@ -46,8 +46,11 @@ public class GUI {
     public CameraDisplay getDisplay() {
         return display;
     }
-
     public ProcessingValuesController getValuesController() {
         return valuesController;
+    }
+
+    public JFrame getFrame() {
+        return frame;
     }
 }
